@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RecipeService } from '../services/recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -6,37 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-list.component.css'],
 })
 export class RecipeListComponent implements OnInit {
-  constructor() {}
+  constructor(private recipeService: RecipeService) {}
 
-  // TODO: will be replaced by backend datas
-  recipes = [
-    {
-      id: 1,
-      name: 'Chocolate Chip Cookies',
-      description: 'Sugar, flour, chocolate chips, etc.',
-    },
-    {
-      id: 2,
-      name: 'Wheat Bread',
-      description: 'Yeast, flour, water, salt, etc.',
-    },
-    {
-      id: 3,
-      name: 'Apple Crumble',
-      description: 'Sugar, flour, apples, butter, etc.',
-    },
-  ];
+  recipes: any;
 
   selectedRecipe: any;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.recipeService.getRecipeList('FR').subscribe({
+      next: (r) => (this.recipes = r),
+      error: (e) => console.log(e),
+    });
+  }
 
   onSelect(recipe: any): void {
     this.selectedRecipe = recipe;
   }
 
   onDelete(recipe: any): void {
-    this.recipes = this.recipes.filter((obj) => obj.id != recipe.id);
-    // TODO: Call backend to delete instead of line above
+    this.recipeService
+      .deleteRecipe(recipe.id)
+      .subscribe({
+        next: (r) => this.ngOnInit(),
+        error: (e) => console.log(e),
+      });
   }
 }
