@@ -1,5 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+import { IRecipeDetail } from '../models/recipe-detail.model';
+import { IRecipe } from '../models/recipe.model';
 
 const baseApi = '/api/recipes';
 
@@ -10,19 +13,19 @@ export class RecipeService {
   constructor(private http: HttpClient) {}
 
   getRecipeList(lang: String) {
-    return this.http.get<{}[]>(baseApi + `/lang/${lang}`);
+    return this.http.get<IRecipe[]>(baseApi + `/lang/${lang}`);
   }
 
   getRecipeDetail(id: any) {
-    return this.http.get(baseApi + `/detail/${id}`);
+    return this.http.get<IRecipeDetail>(baseApi + `/detail/${id}`);
   }
 
-  createRecipe(recipe: any) {
-    return this.http.post(baseApi + `/create`, recipe);
+  createRecipe(recipe: IRecipe) {
+    return this.http.post<IRecipe>(baseApi + `/create`, recipe);
   }
 
-  updateRecipe(recipe: any) {
-    return this.http.put(baseApi + `/update`, recipe);
+  updateRecipe(recipe: IRecipe) {
+    return this.http.put<IRecipe>(baseApi + `/update`, recipe);
   }
 
   deleteRecipe(id: any) {
