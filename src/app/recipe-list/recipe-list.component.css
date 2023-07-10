@@ -1,0 +1,33 @@
+.recipe-grid {
+  display: grid;
+  grid-template-areas:
+    "head head"
+    "list detail"
+    "foot foot";
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 0.5fr 8fr 0.5fr;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+}
+
+.head {
+  grid-area: head;
+  text-align: center;
+}
+
+.list {
+  grid-area: list;
+  text-align: left;
+}
+
+.detail {
+  grid-area: detail;
+  text-align: center;
+}
+
+.foot {
+  grid-area: foot;
+  text-align: center;
+}

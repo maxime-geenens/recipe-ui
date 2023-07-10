@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const BASE_API = '/api/recipes';
+const baseApi = '/api/recipes';
 
 @Injectable({
   providedIn: 'root',
@@ -10,22 +10,22 @@ export class RecipeService {
   constructor(private http: HttpClient) {}
 
   getRecipeList(lang: String) {
-    return this.http.get<{}[]>(BASE_API + `/lang/${lang}`);
+    return this.http.get<{}[]>(baseApi + `/lang/${lang}`);
   }
 
   getRecipeDetail(id: any) {
-    return this.http.get(BASE_API + `/detail/${id}`);
+    return this.http.get(baseApi + `/detail/${id}`);
   }
 
   createRecipe(recipe: any) {
-    return this.http.post(BASE_API + `/create`, recipe);
+    return this.http.post(baseApi + `/create`, recipe);
   }
 
   updateRecipe(recipe: any) {
-    return this.http.put(BASE_API + `/update`, recipe);
+    return this.http.put(baseApi + `/update`, recipe);
   }
 
   deleteRecipe(id: any) {
-    return this.http.delete(BASE_API + `/delete/${id}`);
+    return this.http.delete(baseApi + `/delete/${id}`);
   }
 }

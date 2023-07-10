@@ -1,30 +1,51 @@
-<div class="container">
-    <h2>Recipes</h2>
+<div class="recipe-grid">
+    <div class="head">
+        <h2>Recipes</h2>
+    </div>
 
-    <div *ngFor="let recipe of recipes" class="mb-5">
-        <p
-            (click)="onSelect(recipe)"
-            style="cursor: pointer;"
+    <div class="list">
+        <div
+            *ngFor="let recipe of recipes"
+            class="mb-5"
         >
-            {{recipe.name}}
-        </p>
-        <a [routerLink]="['/recipes/', recipe.id]">Edit</a>
-        <br/>
-        <a (click)="onDelete(recipe)" class="link-primary">Delete</a>
+            <p
+                (click)="onSelect(recipe)"
+                style="cursor: pointer;"
+            >
+                {{recipe.name}}
+            </p>
+
+            <br>
+
+        </div>
+
+        <a
+            [routerLink]="['/recipes']"
+            class="btn btn-primary"
+        >
+            Add Recipe
+        </a>
     </div>
 
-    <div *ngIf="selectedRecipe">
-        <br>
-        <h4>{{selectedRecipe.name}}</h4>
-        <h5>({{selectedRecipe.type}})</h5>
-        <p>{{selectedRecipe.description}}</p>
-        <br>
+    <div class="detail">
+        <div *ngIf="selectedRecipe">
+            <br>
+            <h4>{{selectedRecipe.name}}</h4>
+            <h5>({{selectedRecipe.type}})</h5>
+            <p>{{selectedRecipe.description}}</p>
+            <br>
+            <a [routerLink]="['/recipes/', selectedRecipe.id]">Edit</a>
+            <br>
+            <a
+                (click)="onDelete(selectedRecipe)"
+                class="link-primary"
+            >
+                Delete
+            </a>
+        </div>
     </div>
 
-    <a
-        [routerLink]="['/recipes']"
-        class="btn btn-primary"
-    >
-        Add Recipe
-    </a>
+    <div class="foot">
+        <p>Some footer</p>
+    </div>
 </div>
