@@ -10,10 +10,23 @@ const baseApi = '/api/recipes';
   providedIn: 'root',
 })
 export class RecipeService {
+  private recipeList!: IRecipe[];
+  private recipe!: IRecipe;
+
   constructor(private http: HttpClient) {}
 
-  getRecipeList(lang: String) {
-    return this.http.get<IRecipe[]>(baseApi + `/lang/${lang}`);
+  getRecipeList(lang: String): IRecipe[] {
+    this.http.get<IRecipe[]>(baseApi + `/lang/${lang}`).subscribe({
+      next: (result) => (this.recipeList = result),
+      error: (e) => console.log(e),
+    });
+    return this.recipeList;
+  }
+
+  getRecipe(id: any, lang: String): IRecipe {
+    let recList = this.getRecipeList(lang);
+    let rec = recList.find((r) => r.id == id);
+    return rec ?? this.recipe;
   }
 
   getRecipeDetail(id: any) {

@@ -1,7 +1,9 @@
+import { IReference } from "./references/reference.model"
+
 export interface ITool {
   id: Number
   lang: String
   quantity: Number
-  toolRefId: Number
+  toolRef: IReference
   recipeId: Number
 }

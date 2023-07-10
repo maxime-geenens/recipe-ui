@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { IRecipe } from '../models/recipe.model';
 import { RecipeService } from '../services/recipe.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { RecipeService } from '../services/recipe.service';
   styleUrls: ['./recipe-form.component.css'],
 })
 export class RecipeFormComponent implements OnInit {
-  recipe: any;
+  recipe!: IRecipe;
 
   constructor(
     private router: Router,
@@ -19,14 +20,12 @@ export class RecipeFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.route.snapshot.paramMap.get('id') != null)
-      this.recipeService
-        .getRecipeDetail(this.route.snapshot.paramMap.get('id'))
-        .subscribe({
-          next: (r) => (this.recipe = r),
-          error: (e) => console.log(e),
-        });
+      this.recipe = this.recipeService.getRecipe(
+        this.route.snapshot.paramMap.get('id'),
+        'FR'
+      );
     else {
-      this.recipe = { id: null, name: null, description: null, type: null };
+      console.log('No id found in URL param.');
     }
   }
 
