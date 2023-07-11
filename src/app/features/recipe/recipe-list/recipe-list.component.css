@@ -1,0 +1,55 @@
+:host {
+  display: block;
+  min-height: 90vh;
+  margin: 0;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-areas:
+    "head head"
+    "recipes detail";
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 0.5fr 8fr;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+}
+
+.head {
+  grid-area: head;
+  text-align: center;
+  border: 2px solid black;
+}
+
+.recipes {
+  grid-area: recipes;
+  display: grid;
+  grid-template-areas:
+    "list"
+    "add";
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  border: 2px solid black;
+  align-items: center;
+  justify-items: center;
+}
+
+.list {
+  grid-area: list;
+  overflow-y: scroll;
+  text-align: left;
+}
+
+.add {
+  grid-area: add;
+  text-align: center;
+  width: fit-content;
+}
+
+.detail {
+  grid-area: detail;
+  text-align: center;
+  border: 2px solid black;
+}

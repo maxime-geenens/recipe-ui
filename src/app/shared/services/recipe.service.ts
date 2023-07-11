@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { IRecipeDetail } from '../models/recipe-detail.model';
-import { IRecipe } from '../models/recipe.model';
+import { IRecipeDetail } from '../../models/recipe-detail.model';
+import { IRecipe } from '../../models/recipe.model';
 
 const baseApi = '/api/recipes';
 
