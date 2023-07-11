@@ -5,6 +5,11 @@ import { RecipeListComponent } from './features/recipe/recipe-list/recipe-list.c
 
 const routes: Routes = [
   { path: '', component: RecipeListComponent },
+  {
+    path: 'users',
+    loadChildren: () =>
+      import('./users/users.module').then((m) => m.UsersModule),
+  },
   { path: 'recipes', component: RecipeFormComponent },
   { path: 'recipes/:id', component: RecipeFormComponent },
 ];

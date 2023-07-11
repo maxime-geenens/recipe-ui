@@ -8,10 +8,10 @@ import { RecipeService } from '../../../shared/services/recipe.service';
   styleUrls: ['./recipe-list.component.css'],
 })
 export class RecipeListComponent implements OnInit {
-  constructor(private recipeService: RecipeService) {}
-
   recipeList: IRecipe[] = [];
   selectedRecipe: any;
+
+  constructor(private recipeService: RecipeService) {}
 
   ngOnInit(): void {
     this.recipeList = this.recipeService.getRecipeList('FR');
@@ -22,11 +22,9 @@ export class RecipeListComponent implements OnInit {
   }
 
   onDelete(recipe: any): void {
-    this.recipeService
-      .deleteRecipe(recipe.id)
-      .subscribe({
-        next: (r) => this.ngOnInit(),
-        error: (e) => console.log(e),
-      });
+    this.recipeService.deleteRecipe(recipe.id).subscribe({
+      next: (r) => this.ngOnInit(),
+      error: (e) => console.log(e),
+    });
   }
 }
