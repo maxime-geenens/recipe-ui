@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RecipeFormComponent } from './shared/components/forms/recipe-form/recipe-form.component';
+import { RecipeFormComponent } from './features/recipe/recipe-form/recipe-form.component';
 import { RecipeListComponent } from './features/recipe/recipe-list/recipe-list.component';
 
 const routes: Routes = [

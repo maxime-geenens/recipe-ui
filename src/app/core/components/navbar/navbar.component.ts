@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'wb-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })

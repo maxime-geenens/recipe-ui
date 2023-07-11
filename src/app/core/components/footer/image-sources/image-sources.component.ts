@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-image-sources',
+  selector: 'wb-image-sources',
   templateUrl: './image-sources.component.html',
   styleUrls: ['./image-sources.component.css']
 })
