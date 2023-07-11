@@ -7,7 +7,7 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
 @NgModule({
   imports: [SharedModule],
   declarations: [RecipeListComponent],
-  exports: [],
+  exports: [RecipeListComponent],
   providers: [RecipeService],
 })
 export class RecipeModule {}

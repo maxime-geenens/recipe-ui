@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { RecipeModule } from './features/recipe/recipe.module';
+import { FeaturesModule } from './features/features.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +16,7 @@ import { RecipeModule } from './features/recipe/recipe.module';
     SharedModule,
     HttpClientModule,
     AppRoutingModule,
-    RecipeModule,
+    FeaturesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
