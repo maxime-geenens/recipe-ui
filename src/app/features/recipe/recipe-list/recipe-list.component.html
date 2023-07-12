@@ -20,7 +20,7 @@
         </div>
 
         <a
-            [routerLink]="['/recipes']"
+            [routerLink]="['/recipes/add']"
             class="btn btn-primary add"
         >
             Add Recipe
@@ -34,7 +34,7 @@
             <h5>({{selectedRecipe.type.name}})</h5>
             <p>{{selectedRecipe.description}}</p>
             <br>
-            <a [routerLink]="['/recipes/', selectedRecipe.id]">Edit</a>
+            <a [routerLink]="['/recipes/edit/', selectedRecipe.id]">Edit</a>
             <br>
             <a
                 (click)="onDelete(selectedRecipe)"
