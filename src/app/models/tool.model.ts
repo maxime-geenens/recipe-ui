@@ -1,9 +1,23 @@
-import { IReference } from "./references/reference.model"
+import { Reference } from './references/reference.model';
 
-export interface ITool {
-  id: Number
-  lang: String
-  quantity: Number
-  toolRef: IReference
-  recipeId: Number
+export class Tool {
+  id: Number;
+  lang: String;
+  quantity: Number;
+  toolRef: Reference;
+  recipeId: Number;
+
+  constructor(
+    id: Number,
+    lang: String,
+    quantity: Number,
+    toolRef: Reference,
+    recipeId: Number
+  ) {
+    this.id = id;
+    this.lang = lang;
+    this.quantity = quantity;
+    this.toolRef = toolRef;
+    this.recipeId = recipeId;
+  }
 }

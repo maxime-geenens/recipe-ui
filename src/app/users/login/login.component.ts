@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from 'src/app/core/services/user.service';
-import { IUser } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ import { IUser } from 'src/app/models/user.model';
 export class LoginComponent implements OnInit {
   submitted: boolean = false;
   loginForm!: FormGroup;
-  user!: IUser;
+  user!: User;
 
   constructor(
     private router: Router,
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     this.logIn(this.user);
   }
 
-  logIn(user: IUser): void {
+  logIn(user: User): void {
     this.userService.logIn(this.user).subscribe({
       complete: () => this.router.navigate(['/', 'recipes']),
       error: (err) => {

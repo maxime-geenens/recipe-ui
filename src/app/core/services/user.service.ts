@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { IUser } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user.model';
 import { delay, EMPTY, Observable, throwError } from 'rxjs';
 
 const baseApi = '/api/users';
@@ -10,18 +10,18 @@ const baseApi = '/api/users';
   providedIn: 'root',
 })
 export class UserService {
-  currentUser?: IUser;
+  currentUser?: User;
 
   constructor(private http: HttpClient) {}
 
   // TODO link to actual api once created on back side
-  saveUser(user: IUser): Observable<IUser> {
+  saveUser(user: User): Observable<User> {
     this.currentUser = { ...user };
     return EMPTY.pipe(delay(1000));
     //return this.http.post<IUser>(baseApi + `/save`, user);
   }
 
-  logIn(user: IUser): Observable<any> {
+  logIn(user: User): Observable<any> {
     // TODO delegate credential check to backend
     // return this.http.post<any>(baseApi + `/logIn`, credentials);
     // Delete following when backend is ready:
@@ -39,7 +39,7 @@ export class UserService {
 
 const logInError = new Error('Invalid login !');
 
-const USERS: IUser[] = [
+const USERS: User[] = [
   {
     id: 1,
     username: 'Brocel',

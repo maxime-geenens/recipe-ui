@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { IRecipeDetail } from '../../models/recipe-detail.model';
-import { IRecipe } from '../../models/recipe.model';
+import { RecipeDetail } from '../../models/recipe-detail.model';
+import { Recipe } from '../../models/recipe.model';
 
 const baseApi = '/api/recipes';
 
@@ -10,35 +11,28 @@ const baseApi = '/api/recipes';
   providedIn: 'root',
 })
 export class RecipeService {
-  private recipeList!: IRecipe[];
-  private recipe!: IRecipe;
 
   constructor(private http: HttpClient) {}
 
-  getRecipeList(lang: String): IRecipe[] {
-    this.http.get<IRecipe[]>(baseApi + `/lang/${lang}`).subscribe({
-      next: (result) => (this.recipeList = result),
-      error: (e) => console.log(e),
-    });
-    return this.recipeList;
+  getRecipeList(lang: String): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(baseApi + `/lang/${lang}`);
   }
 
-  getRecipe(id: any, lang: String): IRecipe {
-    let recList = this.getRecipeList(lang);
-    let rec = recList.find((r) => r.id == id);
-    return rec ?? this.recipe;
+  // TODO: create API in backend !!
+  getRecipe(id: any): Observable<Recipe> {
+    return this.http.get<Recipe>(baseApi + `/id/${id}`);
   }
 
-  getRecipeDetail(id: any) {
-    return this.http.get<IRecipeDetail>(baseApi + `/detail/${id}`);
+  getRecipeDetail(id: any): Observable<RecipeDetail> {
+    return this.http.get<RecipeDetail>(baseApi + `/detail/${id}`)
   }
 
-  createRecipe(recipe: IRecipe) {
-    return this.http.post<IRecipe>(baseApi + `/create`, recipe);
+  createRecipe(recipe: Recipe): Observable<Recipe> {
+    return this.http.post<Recipe>(baseApi + `/create`, recipe);
   }
 
-  updateRecipe(recipe: IRecipe) {
-    return this.http.put<IRecipe>(baseApi + `/update`, recipe);
+  updateRecipe(recipe: Recipe): Observable<Recipe> {
+    return this.http.put<Recipe>(baseApi + `/update`, recipe);
   }
 
   deleteRecipe(id: any) {

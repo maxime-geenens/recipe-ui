@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IRecipe } from '../../../models/recipe.model';
+import { Recipe } from '../../../models/recipe.model';
 import { RecipeService } from '../../../shared/services/recipe.service';
 
 @Component({
@@ -8,23 +8,27 @@ import { RecipeService } from '../../../shared/services/recipe.service';
   styleUrls: ['./recipe-list.component.css'],
 })
 export class RecipeListComponent implements OnInit {
-  recipeList!: IRecipe[];
+  recipeList: Recipe[];
   selectedRecipe: any;
 
   constructor(private recipeService: RecipeService) {
+    this.recipeList = []
   }
 
   ngOnInit(): void {
-    this.recipeList = this.recipeService.getRecipeList('FR');
+    this.recipeService.getRecipeList('FR').subscribe({
+      next: (result) => (this.recipeList = result),
+      error: (e) => console.log(e),
+    });
   }
 
   onSelect(recipe: any): void {
     this.selectedRecipe = recipe;
   }
 
-  onDelete(recipe: any): void {
-    this.recipeService.deleteRecipe(recipe.id).subscribe({
-      next: (r) => this.ngOnInit(),
+  onDelete(id: any): void {
+    this.recipeService.deleteRecipe(id).subscribe({
+      next: () => this.ngOnInit(),
       error: (e) => console.log(e),
     });
   }

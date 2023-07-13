@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from 'src/app/core/services/user.service';
-import { IUser } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user.model';
 import { LocalizationService } from 'src/app/shared/services/localization.service';
 import { helper } from 'src/app/shared/shared.module';
 
@@ -14,7 +14,7 @@ import { helper } from 'src/app/shared/shared.module';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  user!: IUser;
+  user!: User;
   submitted: boolean = false;
   countries?: String[];
   regions?: String[];
@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm.reset();
   }
 
-  saveAndRedirect(user: IUser): void {
+  saveAndRedirect(user: User): void {
     this.userService.saveUser(user).subscribe({
       complete: () => this.router.navigate(['/','recipes']),
       error: () => (this.submitted = false),

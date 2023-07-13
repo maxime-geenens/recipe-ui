@@ -1,11 +1,23 @@
-import { IIngredient } from "./ingredient.model"
-import { IRecipe } from "./recipe.model"
-import { IStep } from "./step.model"
-import { ITool } from "./tool.model"
+import { Ingredient } from './ingredient.model';
+import { Recipe } from './recipe.model';
+import { Step } from './step.model';
+import { Tool } from './tool.model';
 
-export interface IRecipeDetail {
-  recipe: IRecipe
-  ingredientList: IIngredient[]
-  stepList: IStep[]
-  toolList: ITool[]
+export class RecipeDetail {
+  recipe: Recipe;
+  ingredientList: Ingredient[];
+  stepList: Step[];
+  toolList: Tool[];
+
+  constructor(
+    recipe: Recipe,
+    ingredientList: Ingredient[],
+    stepList: Step[],
+    toolList: Tool[]
+  ) {
+    this.recipe = recipe;
+    this.ingredientList = ingredientList;
+    this.stepList = stepList;
+    this.toolList = toolList;
+  }
 }
