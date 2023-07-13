@@ -1,1 +1,81 @@
-<p>login works!</p>
+<div class="container">
+  <div class="card m-3">
+    <h4 class="card-header">Log In</h4>
+    <div class="card-body">
+      <form
+        novalidate
+        (ngSubmit)="onSubmit()"
+        [formGroup]="loginForm"
+      >
+        <div class="row">
+          <div class="col mb-3">
+            <label
+              class="form-label"
+              for="usernameId"
+            >
+              Username
+            </label>
+            <input
+              class="form-control"
+              id="usernameId"
+              type="text"
+              placeholder="Username (required)"
+              required
+              minlength="5"
+              formControlName="username"
+              [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+            >
+            <span class="invalid-feedback">
+              <span *ngIf="f['username'].errors?.['required']">Please enter your username.</span>
+              <span *ngIf="f['username'].errors?.['minlength']">
+                The username must be longer than 5 characters.
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col mb-3">
+            <label
+              class="form-label"
+              for="pwdId"
+            >
+              Password
+            </label>
+            <input
+              class="form-control"
+              id="pwdId"
+              type="password"
+              placeholder="Password (required)"
+              required
+              formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+            >
+            <span
+              class="invalid-feedback"
+              *ngIf="f['password'].errors?.['required']"
+            >
+              Please enter your password.
+            </span>
+
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button
+            class="btn btn-primary me-2"
+            type="submit"
+          >
+            Login
+          </button>
+          <button
+            class="btn btn-secondary"
+            (click)="cancel()"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

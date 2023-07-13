@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from 'src/app/core/services/user.service';
+import { IUser } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,39 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router, private userService: UserService) {}
+  submitted: boolean = false;
+  loginForm!: FormGroup;
+  user!: IUser;
 
-  ngOnInit(): void {}
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private fb: FormBuilder
+  ) {}
 
-  logIn(credentials: any): void {
-    this.userService.logIn(credentials).subscribe({
-      complete: () => this.router.navigate(['/recipes']),
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', Validators.required],
+    });
+  }
+
+  onSubmit(): void {
+    this.submitted = true;
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.user.username = this.loginForm.value['username'];
+    this.user.password = this.loginForm.value['password'];
+
+    this.logIn(this.user);
+  }
+
+  logIn(user: IUser): void {
+    this.userService.logIn(this.user).subscribe({
+      complete: () => this.router.navigate(['/', 'recipes']),
       error: (err) => {
         console.log(err, 'Error');
       },
@@ -24,6 +51,11 @@ export class LoginComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate(['/']);
+    this.submitted = false;
+    this.loginForm.reset();
+  }
+
+  get f() {
+    return this.loginForm.controls;
   }
 }

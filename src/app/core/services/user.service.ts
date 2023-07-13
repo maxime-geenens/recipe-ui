@@ -21,13 +21,13 @@ export class UserService {
     //return this.http.post<IUser>(baseApi + `/save`, user);
   }
 
-  logIn(credentials: any): Observable<any> {
+  logIn(user: IUser): Observable<any> {
     // TODO delegate credential check to backend
     // return this.http.post<any>(baseApi + `/logIn`, credentials);
     // Delete following when backend is ready:
     if (
-      credentials.email !== 'test@test.com' ||
-      credentials.password !== 'supersecret'
+      user.username !== 'Brocel' ||
+      user.password !== 'test123456'
     )
       return throwError(() => logInError);
 
@@ -42,11 +42,10 @@ const logInError = new Error('Invalid login !');
 const USERS: IUser[] = [
   {
     id: 1,
-    username: 'Jim',
+    username: 'Brocel',
     email: 'test@test.com',
-    password: 'supersecret',
-    authorities: [''],
-    age: 18,
+    password: 'test123456',
+    authorities: ['ADMIN'],
     country: 'France',
     region: 'Occitanie',
     city: 'Montpellier',

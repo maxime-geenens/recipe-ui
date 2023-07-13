@@ -4,7 +4,6 @@ export interface IUser {
   email: String
   password: String
   authorities: String[]
-  age: Number
   country: String
   region: String
   city: String

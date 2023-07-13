@@ -8,11 +8,10 @@ import { RecipeService } from '../../../shared/services/recipe.service';
   styleUrls: ['./recipe-list.component.css'],
 })
 export class RecipeListComponent implements OnInit {
-  recipeList: IRecipe[];
+  recipeList!: IRecipe[];
   selectedRecipe: any;
 
   constructor(private recipeService: RecipeService) {
-    this.recipeList = [];
   }
 
   ngOnInit(): void {
