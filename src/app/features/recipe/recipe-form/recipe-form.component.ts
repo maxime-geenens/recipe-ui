@@ -31,17 +31,17 @@ export class RecipeFormComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
-    if (this.recipe.id) {
-      this.recipeService.updateRecipe(this.recipe).subscribe({
-        next: (r) => this.router.navigate(['/recipes']),
-        error: (e) => console.log(e),
-      });
-    } else {
-      this.recipeService.createRecipe(this.recipe).subscribe({
-        next: (r) => this.router.navigate(['/recipes']),
-        error: (e) => console.log(e),
-      });
-    }
+  saveRecipe(): void {
+    this.recipeService.createRecipe(this.recipe).subscribe({
+      next: (r) => this.router.navigate(['/recipes']),
+      error: (e) => console.log(e),
+    });
+  }
+
+  updateRecipe(): void {
+    this.recipeService.updateRecipe(this.recipe).subscribe({
+      next: (r) => this.router.navigate(['/recipes']),
+      error: (e) => console.log(e),
+    });
   }
 }

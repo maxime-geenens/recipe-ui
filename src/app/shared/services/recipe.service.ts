@@ -18,7 +18,6 @@ export class RecipeService {
     return this.http.get<Recipe[]>(baseApi + `/lang/${lang}`);
   }
 
-  // TODO: create API in backend !!
   getRecipe(id: any): Observable<Recipe> {
     return this.http.get<Recipe>(baseApi + `/id/${id}`);
   }

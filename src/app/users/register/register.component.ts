@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { UserService } from 'src/app/core/services/user.service';
 import { User } from 'src/app/models/user.model';
-import { LocalizationService } from 'src/app/shared/services/localization.service';
+import { LocalizationService } from 'src/app/shared/services/third-party-api/localization.service';
 import { helper } from 'src/app/shared/shared.module';
 
 @Component({

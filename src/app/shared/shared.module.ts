@@ -6,7 +6,9 @@ import { RouterModule } from '@angular/router';
 
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { RecipeService } from './services/recipe.service';
-import { LocalizationService } from './services/localization.service';
+import { LocalizationService } from './services/third-party-api/localization.service';
+import { ReferencesService } from './services/references/references.service';
+import { TypesService } from './services/references/types.service';
 
 export * as helper from './helpers/forms.validator';
 
@@ -20,6 +22,11 @@ export * as helper from './helpers/forms.validator';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [RecipeService, LocalizationService],
+  providers: [
+    RecipeService,
+    LocalizationService,
+    ReferencesService,
+    TypesService,
+  ],
 })
 export class SharedModule {}
