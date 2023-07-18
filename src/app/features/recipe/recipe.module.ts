@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeDetailFormComponent } from './recipe-detail-form/recipe-detail-form.component';
+import { RecipeFormGuard } from './recipe-form/recipe-form.guard';
 
 @NgModule({
   imports: [
@@ -15,7 +16,11 @@ import { RecipeDetailFormComponent } from './recipe-detail-form/recipe-detail-fo
     RouterModule.forChild([
       { path: 'recipes/list', component: RecipeListComponent },
       { path: 'recipes/:id', component: RecipeComponent },
-      { path: 'recipes/:id/edit', component: RecipeFormComponent },
+      {
+        path: 'recipes/:id/edit',
+        canDeactivate: [RecipeFormGuard],
+        component: RecipeFormComponent,
+      },
       { path: 'recipes/detail/:id', component: RecipeDetailComponent },
       { path: 'recipes/detail/:id/edit', component: RecipeDetailFormComponent },
       { path: 'recipes/:id/edit', component: RecipeFormComponent },
