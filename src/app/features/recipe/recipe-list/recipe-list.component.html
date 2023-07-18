@@ -4,6 +4,7 @@
   </div>
 
   <div class="recipes">
+    <h5 class="title">List</h5>
     <div
       *ngFor="let recipe of recipeList"
       class="mb-5 list"
@@ -20,23 +21,16 @@
     </div>
 
     <a
-      [routerLink]="['/recipes/add']"
+      [routerLink]="['/recipes/0/edit']"
       class="btn btn-primary add"
     >
       Add Recipe
     </a>
   </div>
 
-  <div class="detail">
-    <div *ngIf="selectedRecipe">
-      <br>
-      <h4>{{selectedRecipe.name}}</h4>
-      <h5>({{selectedRecipe.type.name}})</h5>
-      <p>{{selectedRecipe.description}}</p>
-      <br>
-      <a [routerLink]="['/recipes/edit/', selectedRecipe.id]">Edit</a>
-      <br>
-      <a [routerLink]="['/recipes']" (click)="onDelete(selectedRecipe.id)">Delete</a>
-    </div>
-  </div>
+  <app-recipe
+    class="recipe"
+    [recipe]="selectedRecipe"
+  ></app-recipe>
+
 </div>

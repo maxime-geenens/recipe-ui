@@ -1,124 +1,106 @@
-<div class="container">
-  <div
-    class="p-5"
-    *ngIf="recipe else newRecipe"
+<div class="container main-container">
+  <form
+    [formGroup]="recipeForm"
+    (ngSubmit)="onSubmit()"
   >
-    <form (ngSubmit)="updateRecipe()">
-      <h3>Edit Recipe</h3>
+    <h3>{{title}}</h3>
 
-      <div class="mb-3">
-        <label
-          for="name"
-          class="form-label"
-        >
-          Name
-        </label>
-        <input
-          type="text"
-          class="form-control"
-          id="name"
-          required
-          name="name"
-          [(ngModel)]="recipe.name"
-        >
+    <div class="mb-3">
+      <label
+        for="rName"
+        class="form-label"
+      >
+        Name
+      </label>
+      <input
+        formControlName="rName"
+        type="text"
+        class="form-control"
+        id="rName"
+        name="rName"
+        placeholder="The name of your recipe (required)"
+        minlength="3"
+        required
+        [ngClass]="{'is-invalid': submitted && f['rName'].errors}"
+      >
+      <div
+        *ngIf="submitted && f['rName'].errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="f['rName'].errors?.['required']">Recipe Name is required.</div>
+
+        <div *ngIf="f['rName'].errors?.['minlength']">Name must be at least 3 characters.</div>
       </div>
-      <div class="mb-3">
-        <label
-          for="type"
-          class="form-label"
+    </div>
+    <div class="mb-3">
+      <label
+        for="rType"
+        class="form-label"
+      >
+        Type
+      </label>
+      <select
+        formControlName="rType"
+        class="form-control"
+        name="rType"
+        id="rType"
+        required
+      >
+        <option disabled>Choose a type</option>
+        <option
+          *ngFor="let t of typeList"
+          [ngValue]="t"
         >
-          Type
-        </label>
-        <input
-          type="text"
-          class="form-control"
-          id="type"
-          required
-          name="type"
-          [(ngModel)]="recipe.type.name"
-        >
+          {{t.name}}
+        </option>
+      </select>
+      <div
+        *ngIf="submitted && f['rType'].errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="f['rType'].errors?.['required']">Type is required.</div>
       </div>
-      <div class="mb-3">
-        <label
-          for="description"
-          class="form-label"
-        >
-          Description
-        </label>
-        <input
-          type="area"
-          class="form-control"
-          id="description"
-          required
-          name="description"
-          [(ngModel)]="recipe.description"
-        >
+    </div>
+    <div class="mb-3">
+      <label
+        for="rDesc"
+        class="form-label"
+      >
+        Description
+      </label>
+      <textarea
+        formControlName="rDesc"
+        type="area"
+        class="form-control"
+        id="rDesc"
+        name="rDesc"
+        rows="3"
+        minlength="30"
+        required
+      ></textarea>
+      <div
+        *ngIf="submitted && f['rDesc'].errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="f['rDesc'].errors?.['required']">Description is required.</div>
+        <div *ngIf="f['rDesc'].errors?.['minlength']">
+          Description must be at least 30 characters.
+        </div>
       </div>
+    </div>
+    <div class="text-center submit-grid">
       <button
-        class="btn btn-primary"
+        class="btn btn-secondary me-2 cancel-butt"
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+      <button
+        class="btn btn-primary save-butt"
         type="submit"
       >
         Save
       </button>
-    </form>
-  </div>
-
-  <ng-template #newRecipe>
-    <div class="p-5">
-      <form (ngSubmit)="saveRecipe()">
-        <h3>New Recipe</h3>
-        <div class="mb-3">
-          <label
-            for="name"
-            class="form-label"
-          >
-            Name
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            id="name"
-            required
-            name="name"
-          >
-        </div>
-        <div class="mb-3">
-          <label
-            for="type"
-            class="form-label"
-          >
-            Type
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            id="type"
-            required
-            name="type"
-          >
-        </div>
-        <div class="mb-3">
-          <label
-            for="description"
-            class="form-label"
-          >
-            Description
-          </label>
-          <input
-            type="area"
-            class="form-control"
-            id="description"
-            required
-            name="description"
-          >
-        </div>
-        <button
-          class="btn btn-primary"
-          type="submit"
-        >
-          Save
-        </button>
-      </form>
     </div>
-  </ng-template>
+  </form>
 </div>

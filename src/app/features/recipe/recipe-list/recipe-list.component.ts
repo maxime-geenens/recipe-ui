@@ -9,10 +9,10 @@ import { RecipeService } from '../../../shared/services/recipe.service';
 })
 export class RecipeListComponent implements OnInit {
   recipeList: Recipe[];
-  selectedRecipe: any;
+  selectedRecipe!: Recipe;
 
   constructor(private recipeService: RecipeService) {
-    this.recipeList = []
+    this.recipeList = [];
   }
 
   ngOnInit(): void {
@@ -22,14 +22,7 @@ export class RecipeListComponent implements OnInit {
     });
   }
 
-  onSelect(recipe: any): void {
+  onSelect(recipe: Recipe): void {
     this.selectedRecipe = recipe;
-  }
-
-  onDelete(id: any): void {
-    this.recipeService.deleteRecipe(id).subscribe({
-      next: () => this.ngOnInit(),
-      error: (e) => console.log(e),
-    });
   }
 }

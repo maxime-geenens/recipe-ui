@@ -6,15 +6,17 @@ import { RecipeFormComponent } from './features/recipe/recipe-form/recipe-form.c
 import { RecipeListComponent } from './features/recipe/recipe-list/recipe-list.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  { path: '', component: HomeComponent },
   {
     path: 'users',
     loadChildren: () =>
       import('./users/users.module').then((m) => m.UsersModule),
   },
-  { path: 'recipes', component: RecipeListComponent },
-  { path: 'recipes/add', component: RecipeFormComponent },
-  { path: 'recipes/edit/:id', component: RecipeFormComponent },
+  {
+    path: 'recipes',
+    loadChildren: () =>
+      import('./features/recipe/recipe.module').then((m) => m.RecipeModule),
+  },
 ];
 
 @NgModule({

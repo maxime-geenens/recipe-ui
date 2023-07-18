@@ -1,0 +1,23 @@
+<div
+  class="detail-grid"
+  *ngIf="recipe"
+>
+  <h4 class="name">{{recipe.name}}</h4>
+  <h5 class="type">({{recipe.type.name}})</h5>
+  <p class="desc">{{recipe.description}}</p>
+  <div class="button-grid">
+    <a
+      class="edit btn btn-primary"
+      [routerLink]="['/recipes', recipe.id, 'edit']"
+    >
+      Edit
+    </a>
+    <a
+      class="delete btn btn-secondary"
+      [routerLink]="['/recipes']"
+      (click)="onDelete()"
+    >
+      Delete
+    </a>
+  </div>
+</div>
