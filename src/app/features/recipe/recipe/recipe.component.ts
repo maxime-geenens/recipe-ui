@@ -11,6 +11,8 @@ export class RecipeComponent implements OnInit {
   @Input()
   recipe!: Recipe;
 
+  errorMessage: String = '';
+
   constructor(private recipeService: RecipeService) {}
 
   ngOnInit(): void {}
@@ -20,5 +22,14 @@ export class RecipeComponent implements OnInit {
       next: () => this.ngOnInit(),
       error: (e) => console.log(e),
     });
+  }
+
+  deleteProduct(): void {
+    if (confirm(`Really delete the product: ${this.recipe.name}?`)) {
+      this.recipeService.deleteRecipe(this.recipe.id).subscribe({
+        next: () => console.log('Recipe deleted successfully'),
+        error: (err) => (this.errorMessage = err),
+      });
+    }
   }
 }

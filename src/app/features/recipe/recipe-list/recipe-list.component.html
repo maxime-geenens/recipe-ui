@@ -5,19 +5,15 @@
 
   <div class="recipes">
     <h5 class="title">List</h5>
-    <div
-      *ngFor="let recipe of recipeList"
-      class="mb-5 list"
-    >
-      <p
-        (click)="onSelect(recipe)"
-        style="cursor: pointer;"
-      >
-        {{recipe.name}}
-      </p>
-
-      <br>
-
+    <div class="mb-5 list">
+      <div *ngFor="let recipe of recipeList">
+        <span
+          (click)="onSelect(recipe)"
+          style="cursor: pointer;"
+        >
+          {{recipe.name}}
+        </span>
+      </div>
     </div>
 
     <a

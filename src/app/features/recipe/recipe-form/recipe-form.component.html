@@ -1,50 +1,39 @@
 <div class="container main-container">
   <form
+    novalidate
     [formGroup]="recipeForm"
-    (ngSubmit)="onSubmit()"
+    (ngSubmit)="saveRecipe()"
   >
     <h3>{{title}}</h3>
 
     <div class="mb-3">
       <label
-        for="rName"
+        for="name"
         class="form-label"
       >
         Name
       </label>
       <input
-        formControlName="rName"
-        type="text"
         class="form-control"
-        id="rName"
-        name="rName"
-        placeholder="The name of your recipe (required)"
-        minlength="3"
-        required
-        [ngClass]="{'is-invalid': submitted && f['rName'].errors}"
+        id="name"
+        type="text"
+        formControlName="name"
+        [ngClass]="{'is-invalid': displayMessage['name']}"
       >
-      <div
-        *ngIf="submitted && f['rName'].errors"
-        class="invalid-feedback"
-      >
-        <div *ngIf="f['rName'].errors?.['required']">Recipe Name is required.</div>
-
-        <div *ngIf="f['rName'].errors?.['minlength']">Name must be at least 3 characters.</div>
-      </div>
+      <span class="invalid-feedback">{{displayMessage['name']}}</span>
     </div>
     <div class="mb-3">
       <label
-        for="rType"
+        for="type"
         class="form-label"
       >
         Type
       </label>
       <select
-        formControlName="rType"
+        formControlName="type"
         class="form-control"
-        name="rType"
-        id="rType"
-        required
+        id="type"
+        [ngClass]="{'is-invalid': displayMessage['type']}"
       >
         <option disabled>Choose a type</option>
         <option
@@ -54,44 +43,29 @@
           {{t.name}}
         </option>
       </select>
-      <div
-        *ngIf="submitted && f['rType'].errors"
-        class="invalid-feedback"
-      >
-        <div *ngIf="f['rType'].errors?.['required']">Type is required.</div>
-      </div>
+      <span class="invalid-feedback">{{displayMessage['type']}}</span>
     </div>
     <div class="mb-3">
       <label
-        for="rDesc"
+        for="description"
         class="form-label"
       >
         Description
       </label>
       <textarea
-        formControlName="rDesc"
+        formControlName="description"
         type="area"
         class="form-control"
-        id="rDesc"
-        name="rDesc"
+        id="description"
         rows="3"
-        minlength="30"
-        required
+        [ngClass]="{'is-invalid': displayMessage['description']}"
       ></textarea>
-      <div
-        *ngIf="submitted && f['rDesc'].errors"
-        class="invalid-feedback"
-      >
-        <div *ngIf="f['rDesc'].errors?.['required']">Description is required.</div>
-        <div *ngIf="f['rDesc'].errors?.['minlength']">
-          Description must be at least 30 characters.
-        </div>
-      </div>
+      <span class="invalid-feedback">{{displayMessage['description']}}</span>
     </div>
     <div class="text-center submit-grid">
       <button
         class="btn btn-secondary me-2 cancel-butt"
-        (click)="cancel()"
+        (click)="onSaveComplete()"
       >
         Cancel
       </button>
