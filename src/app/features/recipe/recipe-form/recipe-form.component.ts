@@ -51,15 +51,15 @@ export class RecipeFormComponent implements OnInit, AfterViewInit {
     // Defines all of the validation messages for the form.
     // These could instead be retrieved from a file or database.
     this.validationMessages = {
-      rName: {
+      name: {
         required: 'Recipe name is required.',
         minlength: 'Recipe name must be at least three characters.',
         maxlength: 'Recipe name cannot exceed 50 characters.',
       },
-      rType: {
+      type: {
         required: 'Recipe type is required.',
       },
-      rDesc: {
+      description: {
         required: 'Recipe description is required.',
         minlength: 'Recipe description must be at least 30 characters.',
         maxlength: 'Recipe name cannot exceed 250 characters.',
@@ -134,7 +134,6 @@ export class RecipeFormComponent implements OnInit, AfterViewInit {
       next: (r: Recipe) => this.displayRecipe(r),
       error: (e) => console.log(e),
     });
-    console.log('this.recipe :: ' + this.recipe);
   }
 
   displayRecipe(recipe: Recipe): void {
@@ -146,9 +145,9 @@ export class RecipeFormComponent implements OnInit, AfterViewInit {
 
     // Update the data on the form
     this.recipeForm.patchValue({
-      rName: this.recipe.name,
-      rType: this.recipe.type,
-      rDesc: this.recipe.description,
+      name: this.recipe.name,
+      type: this.recipe.type,
+      description: this.recipe.description,
     });
   }
 

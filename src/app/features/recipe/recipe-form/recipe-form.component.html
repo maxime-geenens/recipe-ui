@@ -65,13 +65,16 @@
     <div class="text-center submit-grid">
       <button
         class="btn btn-secondary me-2 cancel-butt"
-        (click)="onSaveComplete()"
+        [routerLink]="['/recipes/list']"
+        type="button"
       >
         Cancel
       </button>
       <button
         class="btn btn-primary save-butt"
         type="submit"
+        [title]="recipeForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+        [disabled]="!recipeForm.valid"
       >
         Save
       </button>
