@@ -1,0 +1,67 @@
+<div class="step-form-grid">
+  <div class="form">
+    <form
+      novalidate
+      [formGroup]="stepsForm"
+      (ngSubmit)="saveSteps()"
+    >
+      <div formArrayName="steps">
+        <div
+          class="form-group row mb-2"
+          *ngFor="let steps of steps.controls; let i=index"
+        >
+          <div [formGroupName]="i">
+            <input
+              class="form-control col-md-1"
+              type="text"
+              placeholder="Position"
+              formControlName="position"
+            >
+            <input
+              class="form-control col-md-1"
+              type="text"
+              placeholder="Description"
+              formControlName="description"
+            >
+          </div>
+          <button
+            class="col-md-1 btn btn-outline-warning btn-sm"
+            type="button"
+            title="Remove this step"
+            (click)="removeStep(i)"
+          >
+            Remove Step
+          </button>
+        </div>
+        <div class="col-md-2 mb-2">
+          <button
+            class="btn btn-outline-secondary btn-sm"
+            type="button"
+            title="Add a step"
+            (click)="addStep()"
+          >
+            Add Step
+          </button>
+        </div>
+      </div>
+      <div class="submit-grid text-center">
+        <button
+          class="btn btn-secondary me-2 cancel-butt"
+          [routerLink]="['/recipes/list']"
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          class="btn btn-primary save-butt"
+          type="submit"
+          [title]="stepsForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+          [disabled]="!stepsForm.valid"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>

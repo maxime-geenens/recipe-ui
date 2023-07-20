@@ -5,6 +5,8 @@ import { TypesService } from 'src/app/shared/services/references/types.service';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { StepComponent } from './step/step.component';
+import { StepFormComponent } from './step-form/step-form.component';
+import { StepService } from 'src/app/shared/services/step.service';
 
 @NgModule({
   imports: [
@@ -13,8 +15,8 @@ import { StepComponent } from './step/step.component';
       //{ path: 'ingredients/list', component: IngredientListComponent },
     ]),
   ],
-  declarations: [StepComponent],
-  exports: [StepComponent],
-  providers: [ReferencesService, TypesService],
+  declarations: [StepComponent, StepFormComponent],
+  exports: [StepComponent, StepFormComponent],
+  providers: [ReferencesService, TypesService, StepService],
 })
 export class StepModule {}

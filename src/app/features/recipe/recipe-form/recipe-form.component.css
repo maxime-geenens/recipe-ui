@@ -1,12 +1,7 @@
-.main-container {
-  width: 60%;
-}
-
 .submit-grid {
   display: grid;
-  grid-template-areas: 
-  ". . cancel . save . .";
-  grid-template-rows: repeat(7, 1fr);
+  grid-template-areas: ". . cancel . save . .";
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .cancel-butt {

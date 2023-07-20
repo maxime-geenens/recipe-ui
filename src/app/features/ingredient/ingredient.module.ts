@@ -5,6 +5,7 @@ import { TypesService } from 'src/app/shared/services/references/types.service';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { IngredientComponent } from './ingredient/ingredient.component';
+import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 
 @NgModule({
   imports: [
@@ -13,8 +14,8 @@ import { IngredientComponent } from './ingredient/ingredient.component';
       //{ path: 'ingredients/list', component: IngredientListComponent },
     ]),
   ],
-  declarations: [IngredientComponent],
-  exports: [IngredientComponent],
+  declarations: [IngredientComponent, IngredientFormComponent],
+  exports: [IngredientComponent, IngredientFormComponent],
   providers: [ReferencesService, TypesService],
 })
 export class IngredientModule {}

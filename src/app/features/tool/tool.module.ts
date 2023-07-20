@@ -5,6 +5,7 @@ import { TypesService } from 'src/app/shared/services/references/types.service';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ToolComponent } from './tool/tool.component';
+import { ToolFormComponent } from './tool-form/tool-form.component';
 
 @NgModule({
   imports: [
@@ -13,8 +14,8 @@ import { ToolComponent } from './tool/tool.component';
       //{ path: 'ingredients/list', component: IngredientListComponent },
     ]),
   ],
-  declarations: [ToolComponent],
-  exports: [ToolComponent],
+  declarations: [ToolComponent, ToolFormComponent],
+  exports: [ToolComponent, ToolFormComponent],
   providers: [ReferencesService, TypesService],
 })
 export class ToolModule {}

@@ -1,0 +1,33 @@
+.step-form-grid {
+  display: grid;
+  grid-template-areas:
+    "form"
+    "submit";
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  text-align: center;
+  border: 2px solid black;
+}
+
+.form {
+  grid-area: form;
+  text-align: left;
+}
+
+.submit-grid {
+  grid-area: submit;
+  display: grid;
+  grid-template-areas: ". . cancel . save . .";
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.cancel-butt {
+  grid-area: cancel;
+}
+
+.save-butt {
+  grid-area: save;
+}
