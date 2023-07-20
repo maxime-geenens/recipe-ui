@@ -2,7 +2,14 @@
   class="detail-grid"
   *ngIf="recipe"
 >
-  <h4 class="name">{{recipe.name}}</h4>
+  <h4
+    class="name"
+    [routerLink]="['/recipes/detail', recipe.id]"
+    style="cursor: pointer;"
+    title="Recipe Detail"
+  >
+    {{recipe.name}}
+  </h4>
   <h5 class="type">({{recipe.type.name}})</h5>
   <p class="desc">{{recipe.description}}</p>
   <div class="button-grid">
@@ -14,7 +21,7 @@
     </a>
     <a
       class="delete btn btn-secondary"
-      [routerLink]="['/recipes']"
+      [routerLink]="['/recipes/list']"
       (click)="onDelete()"
     >
       Delete

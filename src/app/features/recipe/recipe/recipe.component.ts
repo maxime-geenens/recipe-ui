@@ -18,13 +18,6 @@ export class RecipeComponent implements OnInit {
   ngOnInit(): void {}
 
   onDelete(): void {
-    this.recipeService.deleteRecipe(this.recipe.id).subscribe({
-      next: () => this.ngOnInit(),
-      error: (e) => console.log(e),
-    });
-  }
-
-  deleteProduct(): void {
     if (confirm(`Really delete the product: ${this.recipe.name}?`)) {
       this.recipeService.deleteRecipe(this.recipe.id).subscribe({
         next: () => console.log('Recipe deleted successfully'),

@@ -9,6 +9,9 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeDetailFormComponent } from './recipe-detail-form/recipe-detail-form.component';
 import { RecipeFormGuard } from './recipe-form/recipe-form.guard';
+import { StepModule } from '../step/step.module';
+import { ToolModule } from '../tool/tool.module';
+import { IngredientModule } from '../ingredient/ingredient.module';
 
 @NgModule({
   imports: [
@@ -25,6 +28,9 @@ import { RecipeFormGuard } from './recipe-form/recipe-form.guard';
       { path: 'recipes/detail/:id/edit', component: RecipeDetailFormComponent },
       { path: 'recipes/:id/edit', component: RecipeFormComponent },
     ]),
+    StepModule,
+    ToolModule,
+    IngredientModule,
   ],
   declarations: [
     RecipeListComponent,

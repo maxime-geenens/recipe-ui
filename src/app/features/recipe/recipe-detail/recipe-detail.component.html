@@ -1,1 +1,39 @@
-<p>recipe-detail works!</p>
+<div class="detail-grid">
+  <div class="head">
+    <h2 class="title">{{rName}}</h2>
+    <h3 class="type">[{{rType}}]</h3>
+  </div>
+  <div class="desc">{{rDesc}}</div>
+  <div class="steps">
+    <h4>Steps</h4>
+    <div *ngFor="let step of steps">
+      <app-step [step]=step></app-step>
+    </div>
+  </div>
+  <div class="tools">
+    <h5>Tools</h5>
+    <div *ngFor="let tool of tools">
+      <app-tool [tool]=tool></app-tool>
+    </div>
+  </div>
+  <div class="ingredients">
+    <h5>Ingredients</h5>
+    <div *ngFor="let ingredient of ingredients">
+      <app-ingredient [ingredient]=ingredient></app-ingredient>
+    </div>
+  </div>
+  <div class="button-grid">
+    <a
+      class="edit btn btn-primary"
+      [routerLink]="['/recipes/detail', rId, 'edit']"
+    >
+      Edit
+    </a>
+    <a
+      class="back btn btn-secondary"
+      [routerLink]="['/recipes/list']"
+    >
+      Back
+    </a>
+  </div>
+</div>

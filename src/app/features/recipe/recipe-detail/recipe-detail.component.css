@@ -1,0 +1,97 @@
+.detail-grid {
+  display: grid;
+  row-gap: 2%;
+  grid-template-areas:
+    "head head ."
+    "desc desc ingredients"
+    "steps steps ingredients"
+    "steps steps tools"
+    "steps steps butt";
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto) auto 0.25fr;
+  align-items: flex-start;
+  justify-items: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 1%;
+}
+
+.head {
+  grid-area: head;
+  display: grid;
+  grid-template-areas: "title type";
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+  justify-items: center;
+  width: 60%;
+  text-align: center;
+  border: 2px solid black;
+}
+
+.title {
+  grid-area: title;
+  text-align: center;
+}
+
+.type {
+  grid-area: type;
+  text-align: left;
+}
+
+.desc {
+  grid-area: desc;
+  text-align: left;
+  border: 2px solid black;
+  width: 90%;
+  padding: 1%;
+}
+
+.steps {
+  grid-area: steps;
+  text-align: left;
+  border: 2px solid black;
+  width: 90%;
+  height: fit-content;
+  padding: 1%;
+  vertical-align: text-top;
+}
+
+.ingredients {
+  grid-area: ingredients;
+  text-align: left;
+  border: 2px solid black;
+  width: 100%;
+  padding: 1%;
+}
+
+.tools {
+  grid-area: tools;
+  text-align: left;
+  border: 2px solid black;
+  width: 100%;
+  padding: 1%;
+}
+
+.button-grid {
+  grid-area: butt;
+  display: grid;
+  grid-template-areas: "back edit";
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  align-items: center;
+  justify-items: center;
+  width: 90%;
+  height: 100%;
+  padding: 1%;
+}
+
+.back {
+  grid-area: back;
+  text-align: center;
+}
+
+.edit {
+  grid-area: edit;
+  text-align: center;
+}
